@@ -1,21 +1,23 @@
 <?php 
     include 'header.php';
+    // Enter your API key
+    $apikey = "Your API Key";
     if(isset($_GET['type'])){
         $news_type = $_GET['type'];
         if($news_type == "apple"){
-            $url = "https://newsapi.org/v2/everything?q=apple&from=2022-11-15&to=2022-11-15&sortBy=popularity&apiKey=YourAPIKey";
+            $url = "https://newsapi.org/v2/everything?q=apple&from=2022-11-15&to=2022-11-15&sortBy=popularity&apiKey=".$apiKey."";
             $apple = "class='active'";
         }
         if($news_type == "tesla"){
-            $url = "https://newsapi.org/v2/everything?q=tesla&from=2022-10-16&sortBy=publishedAt&apiKey=YourAPIKey";
+            $url = "https://newsapi.org/v2/everything?q=tesla&from=2022-10-16&sortBy=publishedAt&apiKey=".$apiKey."";
             $tesla = "class='active'";
         }
         if($news_type == "wall"){
-            $url = "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=YourAPIKey";
+            $url = "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=".$apiKey."";
             $wall = "class='active'";
         }
         if($news_type == "tech"){
-            $url = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=YourAPIKey";
+            $url = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=".$apiKey."";
             $tech = "class='active'";
         }
         $json_data = file_get_contents($url);
@@ -60,7 +62,7 @@
         }else if($country == "us"){
             $country_name = "USA";
         }
-        $url = "https://newsapi.org/v2/top-headlines?country=".$country."&category=business&apiKey=YourAPIKey";
+        $url = "https://newsapi.org/v2/top-headlines?country=".$country."&category=business&apiKey=".$apiKey."";
         $json_data = file_get_contents($url);
         $array_data = json_decode($json_data, true);
         echo "<div style='background-color:#999;color:#fff;text-align:center;padding:5px;'><h1>".$country_name." News</h1></div>";
@@ -85,7 +87,7 @@
         }
         include 'footer.php';
     }else {
-        $url = "https://newsapi.org/v2/everything?q=apple&from=2022-11-15&to=2022-11-15&sortBy=popularity&apiKey=YourAPIKey";
+        $url = "https://newsapi.org/v2/everything?q=apple&from=2022-11-15&to=2022-11-15&sortBy=popularity&apiKey=".$apiKey."";
         $json_data = file_get_contents($url);
         $array_data = json_decode($json_data, true);
         $_SESSION['type'] = "apple";
